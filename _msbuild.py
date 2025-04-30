@@ -1,6 +1,6 @@
 import os
-from pymsbuild import *
-from pymsbuild.dllpack import *
+from pymsbuild import CProject, CSourceFile, File, get_current_build_state, IncludeFile, ItemDefinition, Manifest, Package, PyFile, PyprojectTomlFile, Prepend, Property, VersionInfo
+from pymsbuild.dllpack import CFunction, DllPackage
 
 
 DLL_NAME = "python314"

@@ -3,8 +3,8 @@
 #  python -m pymsbuild -c _msbuild_test.py
 #  python -m pytest
 #
-from pymsbuild import *
-from pymsbuild.dllpack import *
+from pymsbuild import CSourceFile, IncludeFile, ItemDefinition, Package, Prepend, PyFile
+from pymsbuild.dllpack import CFunction, DllPackage
 
 METADATA = {
     "Metadata-Version": "2.2",
