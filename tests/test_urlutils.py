@@ -27,7 +27,7 @@ def test_urlunsanitise():
     assert url == UU.unsanitise_url(url, [])
 
     url = "http://example.com/"
-    assert None == UU.unsanitise_url(url, candidates)
+    assert UU.unsanitise_url(url, candidates) is None
 
 
 def test_extract_url_auth():
@@ -60,10 +60,10 @@ def test_extract_url_auth():
     ]
 ])
 def test_urljoin(url1, url2, to_parent, expect):
-    if to_parent != True:
-        assert expect == UU.urljoin(url1, url2, to_parent=False)
-    if to_parent != False:
+    if to_parent:
         assert expect == UU.urljoin(url1, url2, to_parent=True)
+    else:
+        assert expect == UU.urljoin(url1, url2, to_parent=False)
 
 
 @pytest.fixture
@@ -256,14 +256,14 @@ def test_bits_errors(localserver, tmp_path, inject_error):
     inject_error(0, 0, 0, 0)
     job = _native.bits_begin(conn, "PyManager Test", url, dest)
     try:
-        progress = _native.bits_get_progress(conn, job)
+        _native.bits_get_progress(conn, job)
 
         # This will be treated as the reason we couldn't read the error code
         inject_error(1, 0xA0000001, 0, 0)
         with pytest.raises(OSError) as ex:
             _native.bits_get_progress(conn, job)
         # Original error is unspecified OSError
-        assert ex.value.__context__.winerror == None
+        assert ex.value.__context__.winerror is None
         # The cause is our error
         assert ex.value.winerror & 0xFFFFFFFF == 0xA0000001
     finally:

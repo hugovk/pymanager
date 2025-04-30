@@ -8,7 +8,7 @@ from pathlib import Path
 
 TESTS = Path(__file__).absolute().parent
 
-import _native
+import _native  # noqa: E402
 if not hasattr(_native, "coinitialize"):
     import _native_test
     for k in dir(_native_test):
@@ -16,7 +16,7 @@ if not hasattr(_native, "coinitialize"):
             setattr(_native, k, getattr(_native_test, k))
 
 
-from manage.logging import LOGGER, DEBUG
+from manage.logging import LOGGER, DEBUG  # noqa: E402
 LOGGER.level = DEBUG
 
 class LogCaptureHandler(list):
@@ -48,7 +48,8 @@ def localserver():
         else:
             raise RuntimeError("failed to launch local server")
         host = f"http://localhost:{port}"
-        with urlopen(host + "/alive"): pass
+        with urlopen(host + "/alive"):
+            pass
         try:
             yield host
         finally:
@@ -56,7 +57,8 @@ def localserver():
                 p.wait(0.1)
             except subprocess.TimeoutExpired:
                 try:
-                    with urlopen(host + "/stop"): pass
+                    with urlopen(host + "/stop"):
+                        pass
                 except URLError:
                     p.kill()
                 p.wait(5)

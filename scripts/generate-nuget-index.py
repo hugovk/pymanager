@@ -6,7 +6,7 @@ from urllib.request import Request, urlopen
 
 REPO = Path(__file__).absolute().parent.parent
 sys.path.append(str(REPO / "src"))
-from manage.verutils import Version
+from manage.verutils import Version  # noqa: E402
 
 
 # Like Invoke-RestMethod in PowerShell

@@ -61,7 +61,7 @@ def test_atomic_unlink(tree):
     files = [tree / "c/d", tree / "b"]
     assert all([f.is_file() for f in files])
 
-    with open(tree / "b", "rb") as f:
+    with open(tree / "b", "rb"):
         with pytest.raises(FilesInUseError):
             atomic_unlink(files)
 
