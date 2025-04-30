@@ -1,7 +1,6 @@
 import pytest
 import shutil
 
-from copy import copy
 
 from manage.exceptions import FilesInUseError
 from manage.fsutils import atomic_unlink, ensure_tree, rmtree, unlink

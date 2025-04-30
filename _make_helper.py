@@ -106,7 +106,7 @@ def get_msix_version(dirs):
     for k, v in NS.items():
         ET.register_namespace(k, v)
     xml = ET.parse(StringIO(appx))
-    identity = xml.find(f"x:Identity", {"x": NS[""]})
+    identity = xml.find("x:Identity", {"x": NS[""]})
     return identity.attrib['Version']
 
 

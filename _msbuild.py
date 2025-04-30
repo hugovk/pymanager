@@ -259,7 +259,7 @@ def _patch_appx_identity(source, dest, **new):
     with open(source, "r", encoding="utf-8") as f:
         xml = ET.parse(f)
 
-    identity = xml.find(f"x:Identity", {"x": NS[""]})
+    identity = xml.find("x:Identity", {"x": NS[""]})
     for k, v in new.items():
         if v:
             identity.set(k, v)
@@ -285,7 +285,7 @@ def update_file(file, content):
 
 
 def init_METADATA():
-    import os, re
+    import os
     _, sep, version = os.getenv("BUILD_SOURCEBRANCH", os.getenv("GITHUB_REF", "")).rpartition("/")
     if sep and "." in version:
         from packaging.version import parse

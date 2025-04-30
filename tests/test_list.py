@@ -1,7 +1,6 @@
 import pytest
 import re
 
-from itertools import zip_longest
 
 from manage import list_command
 from manage.indexutils import Index

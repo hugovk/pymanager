@@ -2,7 +2,6 @@ import base64
 import pytest
 import subprocess
 import sys
-import textwrap
 
 from pathlib import PurePath
 

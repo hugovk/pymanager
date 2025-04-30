@@ -2,6 +2,9 @@
 requires = ['pymsbuild>=1.1.1,<2.0']
 build-backend = "pymsbuild"
 
+[tool.ruff]
+fix = true
+
 [tool.coverage.run]
 branch = true
 disable_warnings = [

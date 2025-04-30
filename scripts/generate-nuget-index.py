@@ -1,7 +1,6 @@
 import json
 import sys
 
-from collections import OrderedDict
 from pathlib import Path
 from urllib.request import Request, urlopen
 

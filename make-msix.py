@@ -2,7 +2,6 @@ import os
 import sys
 import zipfile
 
-from pathlib import Path
 from subprocess import check_call as run
 
 from _make_helper import (
@@ -89,7 +88,7 @@ if os.getenv("PYMANAGER_APPX_STORE_PUBLISHER"):
         p = xml.find("x:Properties", NS)
         e = p.find("uap13:AutoUpdate", NS)
         p.remove(e)
-        e = p.find(f"uap17:UpdateWhileInUse", NS)
+        e = p.find("uap17:UpdateWhileInUse", NS)
         p.remove(e)
 
         with open(source, "wb") as f:
