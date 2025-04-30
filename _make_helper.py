@@ -7,12 +7,15 @@ import winreg
 
 from pathlib import Path
 
+from src.manage.scriptutils import split_args
+
+
 def get_msbuild():
     exe = os.getenv("MSBUILD", "")
     if exe:
         if Path(exe).is_file():
             return [exe]
-        return _split_args(exe)
+        return split_args(exe)
     
     for part in os.getenv("PATH", "").split(os.path.pathsep):
         p = Path(part)
